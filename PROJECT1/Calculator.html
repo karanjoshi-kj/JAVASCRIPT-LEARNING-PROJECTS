@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basic Calculator</title>
+  <link rel="stylesheet" href="Calculator.css">
+</head>
+
+<body>
+  <!-- <h1 class="calci">CALCULATOR</h1> -->
+  <div class="calculator">
+    <input type="text" id="display" />
+
+
+    <div class="Buttons">
+      <button onclick="cleardisplay()">C</button>
+      <button onclick="append('%')">%</button>
+      <button onclick="append('/')">/</button>
+      <button onclick="append('*')">*</button>
+
+      <button onclick="append('7')">7</button>
+      <button onclick="append('8')">8</button>
+      <button onclick="append('9')">9</button>
+      <button onclick="append('-')">-</button>
+
+      <button onclick="append('4')">4</button>
+      <button onclick="append('5')">5</button>
+      <button onclick="append('6')">6</button>
+      <button onclick="append('+')">+</button>
+
+      <button onclick="append('1')">1</button>
+      <button onclick="append('2')">2</button>
+      <button onclick="append('3')">3</button>
+      <button onclick="append('.')">.</button>
+
+      <button onclick="append('0')">0</button>
+      <button onclick="calculate()">=</button>
+    </div>
+  </div>
+
+  <script>
+    let display = document.getElementById("display");
+
+    function append(val) {
+      display.value += val;
+    }
+
+    function cleardisplay() {
+      display.value = "";
+    }
+
+    function calculate() {
+      let s = display.value;   //! YE PUREEE EXPRESSION KO STRING M BADALTA HAI . 
+      let result = 0;
+      let curr = "";   //? YE HAMARE CURRENT VARIABLE KO ADD KAREGA . 
+      let op = "+";  //! YE OPERATOR KO STORE KAREGA . 
+
+      for (let c of s) {
+        if ((c >= "0" && c <= "9") || c == ".") {
+          curr += c;
+        } else {
+          let n = +curr;
+
+          if (op == "+") result += n;
+          else if (op == "-") result -= n;
+          else if (op == "*") result *= n;
+          else if (op == "/") result /= n;
+          else if (op == "%") result %= n;
+
+          op = c;
+          curr = "";
+        }
+      }
+
+      // last number
+      let n = +curr;
+      if (op == "+") result += n;
+      else if (op == "-") result -= n;
+      else if (op == "*") result *= n;
+      else if (op == "/") result /= n;
+      else if (op == "%") result %= n;
+
+      display.value = result;
+    }
+  </script>
+</body>
+</html>
