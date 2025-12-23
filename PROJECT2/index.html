@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Password Validation</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="box">
+    <h2>Create Account</h2>
+
+    <!-- USER DATA -->
+    <input type="text" id="username" placeholder="Username">
+
+    <input type="password" id="password" placeholder="Password" onkeyup="checkPassword()">
+    <input type="checkbox" onclick="togglePassword()"> Show Password
+
+    <input type="password" id="confirm" placeholder="Confirm Password" onkeyup="checkMatch()">
+
+    <p id="matchMsg"></p>
+
+    <ul>
+      <li id="upper"> At least one uppercase letter</li>
+      <li id="lower"> At least one lowercase letter</li>
+      <li id="digit"> At least one digit</li>
+      <li id="special"> At least one special charcter</li>
+    </ul>
+
+    <!-- Button always enabled -->
+    <button>Create Account</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
