@@ -60,4 +60,4 @@ function checkMatch() {
     msg.style.color = "red";
     msg.innerText = "Password not matched";
   }
-}
+}   
