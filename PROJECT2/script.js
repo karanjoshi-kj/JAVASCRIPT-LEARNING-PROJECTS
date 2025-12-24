@@ -22,7 +22,7 @@ function checkPassword() {
     if (ch >= 65 && ch <= 90) hasUpper = true;
     else if (ch >= 97 && ch <= 122) hasLower = true;
     else if (ch >= 48 && ch <= 57) hasDigit = true;
-    else hasSpecial = true; // anything other than letter & digit
+    else hasSpecial = true; 
   }
 
   upper.className = hasUpper ? "green" : "";
