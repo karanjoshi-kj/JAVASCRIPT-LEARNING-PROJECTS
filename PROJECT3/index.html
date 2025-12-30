@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TODO LIST</title>
+</head>
+<body>
+
+<div class="todo-box">
+    <h2>TODO LIST</h2>
+
+    <input type="text" id="taskinput" placeholder="Enter task">
+    <input type="text" id="descinput" placeholder="Enter description">
+
+    <button onclick="addtask()">INSERT</button>
+    <button onclick="clearall()">CLEAR</button>
+
+    <ul id="tasklist"></ul>
+</div>
+
+<script>
+    function addtask() {
+        let task = document.getElementById("taskinput").value;
+        let desc = document.getElementById("descinput").value;
+
+        if (task == "") {
+            alert("ENTER TASK");
+            return;
+        }
+
+        let now = new Date();
+        let date = now.toLocaleDateString();
+        let time = now.toLocaleTimeString();
+
+        let li = document.createElement("li");
+
+        li.innerHTML = `
+            <p class="task">Task: ${task}</p> 
+            <p class="desc">Description: ${desc}</p>
+            <p class="datetime">Added on: ${date} at ${time}</p>
+        `;
+
+        document.getElementById("tasklist").appendChild(li);
+
+        document.getElementById("taskinput").value = "";
+        document.getElementById("descinput").value = "";
+    }
+
+    function clearall() {
+        document.getElementById("tasklist").innerHTML = "";
+    }
+</script>
+
+</body>
+</html>
