@@ -20,55 +20,55 @@
 
     <ul id="tasksList"></ul>
 
-    <script>
-      let counter = 0;
+  <script>
+  let counter = 0;
 
-      function deleteTasks(buttonid) {
-        console.log("hello")
-        console.log(buttonid.parentElement.id);
-        const del = document.getElementById(buttonid.parentElement.id)
-        del.remove();
-        alert("TASK DELETED SUCCESFULLY!!")
-      }
+  function deleteTasks(buttonid) {
+    const confirmDelete = confirm("Do you really want to delete this task?");
 
-      function addTask() {
-        const taskInput = document.getElementById("Tasks").value;
-        const taskDesc = document.getElementById("taskdesc").value;
+    if (confirmDelete) {
+      const taskdiv = document.getElementById(buttonid.parentElement.id);
+      taskdiv.remove();
+      alert("TASK DELETED SUCCESSFULLY!");
+    } 
+  }
 
-        if (taskInput === "" || !isNaN(taskInput)) {
-          alert("Please enter a valid task");
-          return;
-        }
+  function addTask() {
+    const taskInput = document.getElementById("Tasks").value;
+    const taskDesc = document.getElementById("taskdesc").value;
 
-        counter++;
+    if (taskInput === "" || !isNaN(taskInput)) {
+      alert("Please enter a valid task");
+      return;
+    }
 
-        let datetoday = new Date();
+    counter++;
 
-        const li = document.createElement("li");
+    let datetoday = new Date();
+    const li = document.createElement("li");
 
-        li.innerHTML = `
-            <div id="taskdetails-${counter}">
-                <h2 id="taskname-${counter}">${taskInput}</h2>
-                <p id="taskdescription-${counter}">${taskDesc}</p>
-                <p id="taskcreatedAt-${counter}">
-                    ${datetoday.toLocaleString()}
-                </p>
+    li.innerHTML = `
+      <div id="taskdetails-${counter}">
+        <h2 id="taskname-${counter}">${taskInput}</h2>
+        <p id="taskdescription-${counter}">${taskDesc}</p>
+        <p id="taskcreatedAt-${counter}">
+          ${datetoday.toLocaleString()}
+        </p>
+        <button onclick="deleteTasks(this)">Delete</button>
+      </div>
+    `;
 
-                 <button onclick="deleteTasks(this)">Delete</button>
-            </div>
-        `;
+    document.getElementById("tasksList").appendChild(li);
 
-        document.getElementById("tasksList").appendChild(li);
+    document.getElementById("Tasks").value = "";
+    document.getElementById("taskdesc").value = "";
+  }
 
-        document.getElementById("Tasks").value = "";
-        document.getElementById("taskdesc").value = "";
-      }
+  function resetTasks() {
+    document.getElementById("tasksList").innerHTML = "";
+    counter = 0;
+  }
+</script>
 
-      
-      function resetTasks() {
-        document.getElementById("tasksList").innerHTML = "";
-        counter = 0;
-      }
-    </script>
   </body>
 </html>
