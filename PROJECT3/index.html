@@ -5,6 +5,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todo List</title>
+
+    <style>
+      #Edit{
+        display: none;
+      }
+    </style>
   </head>
   <body>
     <h1>Todo List</h1>
@@ -17,37 +23,54 @@
 
     <button onclick="addTask()">Add Task</button>
     <button onclick="resetTasks()">Clear All</button>
+    <button onclick="updateTask()">Update</button>
+    <div id="Edit">
+      Enter Tasks:
+      <input type="text" id="UpdatedTask" />
+
+      Enter Task Description:
+      <input type="text" id="Updatetaskdes" />
+    </div>
 
     <ul id="tasksList"></ul>
 
-  <script>
-  let counter = 0;
 
-  function deleteTasks(buttonid) {
-    const confirmDelete = confirm("Do you really want to delete this task?");
 
-    if (confirmDelete) {
-      const taskdiv = document.getElementById(buttonid.parentElement.id);
-      taskdiv.remove();
-      alert("TASK DELETED SUCCESSFULLY!");
-    } 
-  }
+    <script>
+      let counter = 0;
 
-  function addTask() {
-    const taskInput = document.getElementById("Tasks").value;
-    const taskDesc = document.getElementById("taskdesc").value;
+      function updateTask(){
+        console.log("sdsdns") 
+        document.getElementById('Edit').style.display = "block";
+      }
 
-    if (taskInput === "" || !isNaN(taskInput)) {
-      alert("Please enter a valid task");
-      return;
-    }
+      function deleteTasks(buttonid) {
+        const confirmDelete = confirm(
+          "Do you really want to delete this task?"
+        );
 
-    counter++;
+        if (confirmDelete) {
+          const taskdiv = document.getElementById(buttonid.parentElement.id);
+          taskdiv.remove();
+          alert("TASK DELETED SUCCESSFULLY!");
+        }
+      }
 
-    let datetoday = new Date();
-    const li = document.createElement("li");
+      function addTask() {
+        const taskInput = document.getElementById("Tasks").value;
+        const taskDesc = document.getElementById("taskdesc").value;
 
-    li.innerHTML = `
+        if (taskInput === "" || !isNaN(taskInput)) {
+          alert("Please enter a valid task");
+          return;
+        }
+
+        counter++;
+
+        let datetoday = new Date();
+        const li = document.createElement("li");
+
+        li.innerHTML = `
       <div id="taskdetails-${counter}">
         <h2 id="taskname-${counter}">${taskInput}</h2>
         <p id="taskdescription-${counter}">${taskDesc}</p>
@@ -58,18 +81,16 @@
       </div>
     `;
 
-    document.getElementById("tasksList").appendChild(li);
+        document.getElementById("tasksList").appendChild(li);
 
-    document.getElementById("Tasks").value = "";
-    document.getElementById("taskdesc").value = "";
-  }
+        document.getElementById("Tasks").value = "";
+        document.getElementById("taskdesc").value = "";
+      }
 
-  
-  function resetTasks() {
-    document.getElementById("tasksList").innerHTML = "";
-    counter = 0;
-  }
-</script>
-
+      function resetTasks() {
+        document.getElementById("tasksList").innerHTML = "";
+        counter = 0;
+      }
+    </script>
   </body>
 </html>
