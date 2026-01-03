@@ -1,136 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Todo List</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo List</title>
 
-  <style>
-    #Edit {
-      display: none;
-     
-    }
-  </style>
-</head>
-<body>
+    <style>
+      #Edit {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Todo List</h1>
 
-<h1>Todo List</h1>
+    Enter Task:
+    <input type="text" id="Tasks" />
 
-Enter Tasks:
-<input type="text" id="Tasks">
+    Enter Task Description:
+    <input type="text" id="taskdesc" />
 
-Enter Task Description:
-<input type="text" id="taskdesc">
+    <button onclick="addTask()">Add Task</button>
+    <button onclick="resetTasks()">Clear All</button>
 
-<button onclick="addTask()">Add Task</button>
-<button onclick="resetTasks()">Clear All</button>
+    <div id="Edit">
+      <h3>Update Task</h3>
 
+      Enter Task:
+      <input type="text" id="UpdatedTask" /><br /><br />
 
+      Enter Description:
+      <input type="text" id="Updatetaskdes" /><br /><br />
 
-<div id="Edit">
-  <h3>Update Task</h3>
+      <button onclick="updateTask()">Update</button>
+    </div>
 
-  Enter Tasks:
-  <input type="text" id="UpdatedTask">
+    <ul id="tasksList"></ul>
 
-  Enter Task Description:
-  <input type="text" id="Updatetaskdes">
-  <button onclick="updateTask()">Update</button>
+    <script>
+      let counter = 0;
+      let currentUpdateId = null;
 
-</div>
+      function addTask() {
+        const taskInput = document.getElementById("Tasks").value;
+        const taskDesc = document.getElementById("taskdesc").value;
 
+        if (taskInput === "" || !isNaN(taskInput)) {
+          alert("Please enter a valid task");
+          return;
+        }
 
+        counter++;
 
-<ul id="tasksList"></ul>
+        const date = new Date().toLocaleString();
+        const li = document.createElement("li");
 
-<script>
-  let counter = 0;
-  let currentUpdateId = null;
-
-  function addTask() {
-    const taskInput = document.getElementById("Tasks").value;
-    const taskDesc = document.getElementById("taskdesc").value;
-
-    if (taskInput === "" || !isNaN(taskInput)) {
-      alert("Please enter a valid task");
-      return;
-    }
-
-    counter++;
-
-    const date = new Date().toLocaleString();
-    const li = document.createElement("li");
-
-    li.innerHTML = `
+        li.innerHTML = `
       <div id="taskdetails-${counter}">
-        <h2 id="taskname-${counter}">${taskInput}</h2>
+        <h3 id="taskname-${counter}">${taskInput}</h3>
         <p id="taskdescription-${counter}">${taskDesc}</p>
-        <p id="taskcreatedAt-${counter}">${date}</p>
+        <p>${date}</p>
 
         <button onclick="showUpdate(${counter})">Update</button>
-        <button onclick="deleteTasks(this)">Delete</button>
+        <button onclick="deleteTask(this)">Delete</button>
       </div>
     `;
 
-    document.getElementById("tasksList").appendChild(li);
+        document.getElementById("tasksList").appendChild(li);
 
-    document.getElementById("Tasks").value = "";
-    document.getElementById("taskdesc").value = "";
-  }
+        document.getElementById("Tasks").value = "";
+        document.getElementById("taskdesc").value = "";
+      }
 
-  function showUpdate(id) {
-    document.getElementById("Edit").style.display = "block";
+      function showUpdate(id) {
+        document.getElementById("Edit").style.display = "block";
 
-    document.getElementById("UpdatedTask").value =
-      document.getElementById(`taskname-${id}`).innerText;
+        document.getElementById("UpdatedTask").value = document.getElementById(
+          `taskname-${id}`
+        ).innerText;
 
-    document.getElementById("Updatetaskdes").value =
-      document.getElementById(`taskdescription-${id}`).innerText;
+        document.getElementById("Updatetaskdes").value =
+          document.getElementById(`taskdescription-${id}`).innerText;
 
-    currentUpdateId = id;
-  }
+        currentUpdateId = id;
+      }
 
-  function updateTask() {
-    if (currentUpdateId === null) {
-      alert("No task selected for update");
-      return;
-    }
+      function updateTask() {
+        if (currentUpdateId === null) {
+          alert("No task selected");
+          return;
+        }
 
+        const confirmUpdate = confirm(
+          "Do you really want to update this task?"
+        );
 
-    function updatecheck(){
-      
-    }
+        if (!confirmUpdate) {
+          return;
+        }
 
-    document.getElementById(`taskname-${currentUpdateId}`).innerText =
-      document.getElementById("UpdatedTask").value;
+        document.getElementById(`taskname-${currentUpdateId}`).innerText =
+          document.getElementById("UpdatedTask").value;
 
-    document.getElementById(`taskdescription-${currentUpdateId}`).innerText =
-      document.getElementById("Updatetaskdes").value;
+        document.getElementById(
+          `taskdescription-${currentUpdateId}`
+        ).innerText = document.getElementById("Updatetaskdes").value;
 
-    alert("TASK UPDATED SUCCESSFULLY!");
+        alert("TASK UPDATED SUCCESSFULLY!");
 
-    document.getElementById("Edit").style.display = "none";
-    document.getElementById("UpdatedTask").value = "";
-    document.getElementById("Updatetaskdes").value = "";
+        document.getElementById("Edit").style.display = "none";
+        currentUpdateId = null;
+      }
 
-    currentUpdateId = null;
-  }
+      function deleteTask(btn) {
+        const confirmDelete = confirm(
+          "Do you really want to delete this task?"
+        );
+        if (confirmDelete) {
+          btn.parentElement.remove();
+          alert("TASK DELETED SUCCESSFULLY!");
+        }
+      }
 
-  function deleteTasks(button) {
-    const confirmDelete = confirm("Do you really want to delete this task?");
-    if (confirmDelete) {
-      button.parentElement.remove();
-      alert("TASK DELETED SUCCESSFULLY!");
-    }
-  }
-
-  function resetTasks() {
-    document.getElementById("tasksList").innerHTML = "";
-    counter = 0;
-    currentUpdateId = null;
-    document.getElementById("Edit").style.display = "none";
-  }
-</script>
-
-</body>
+      function resetTasks() {
+        document.getElementById("tasksList").innerHTML = "";
+        document.getElementById("Edit").style.display = "none";
+        counter = 0;
+        currentUpdateId = null;
+      }
+    </script>
+  </body>
 </html>
