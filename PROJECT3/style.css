@@ -112,6 +112,7 @@ button[onclick^="showUpdate"] {
     color: white;
 }
 
+
 button[onclick^="deleteTask"] {
     background-color: #e74c3c;
     color: white;
