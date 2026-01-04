@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
   <title>Todo List</title>
 
   <style>
@@ -26,13 +27,10 @@ Description:
 
 <div id="Edit">
   <h3>Update Task</h3>
-
   Task:
   <input type="text" id="UpdatedTask"><br><br>
-
   Description:
   <input type="text" id="Updatetaskdes"><br><br>
-
   <button onclick="updateTask()">Update</button>
 </div>
 
@@ -55,14 +53,17 @@ Description:
     const date = new Date().toLocaleString();
 
     const li = document.createElement("li");
+    // ID ko <li> par shift kar diya taaki asani se delete/update ho sake
+    li.id = `task-item-${counter}`; 
+    
     li.innerHTML = `
       <div id="taskdetails-${counter}">
         <h3 id="taskname-${counter}">${task}</h3>
         <p id="taskdescription-${counter}">${desc}</p>
-        <p>${date}</p>
+        <small>${date}</small><br><br>
 
         <button onclick="showUpdate(${counter})">Update</button>
-        <button onclick="deleteTask(this)">Delete</button>
+        <button onclick="deleteTask(${counter})">Delete</button>
       </div>
     `;
 
@@ -100,10 +101,11 @@ Description:
     currentUpdateId = null;
   }
 
-  function deleteTask(btn) {
+  function deleteTask(id) {
     const ask = confirm("Do you really want to delete this task?");
     if (ask) {
-      btn.parentElement.remove();
+      const elementToRemove = document.getElementById(`task-item-${id}`);
+      elementToRemove.remove();
       alert("TASK DELETED");
     }
   }

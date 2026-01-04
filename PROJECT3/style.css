@@ -2,95 +2,128 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     min-height: 100vh;
-    background: linear-gradient(135deg, #667eea, #aa70e4);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    padding: 20px;
 }
 
-.todo-box {
-    background: #fff;
-    width: 100%;
-    max-width: 420px;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-}
-
-.todo-box h2 {
-    text-align: center;
-    margin-bottom: 20px;
+h1 {
     color: #333;
+    margin-bottom: 20px;
+    font-weight: 700;
 }
 
-.todo-box input {
+body > input[type="text"] {
     width: 100%;
-    padding: 10px 12px;
-    margin-bottom: 12px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
+    max-width: 400px;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     outline: none;
-    font-size: 14px;
+    transition: border-color 0.3s;
 }
 
-.todo-box input:focus {
+body > input:focus {
     border-color: #667eea;
 }
 
-.todo-box button {
-    width: 48%;
-    padding: 10px;
+button {
+    cursor: pointer;
+    padding: 10px 20px;
+    margin: 5px;
     border: none;
     border-radius: 6px;
-    font-size: 14px;
-    cursor: pointer;
-    color: #fff;
+    font-weight: 600;
+    transition: all 0.3s ease;
 }
 
-.todo-box button:first-of-type {
-    background: #667eea;
+button[onclick="addTask()"] {
+    background-color: #4CAF50;
+    color: white;
 }
 
-.todo-box button:last-of-type {
-    background: #ff4d4d;
-    float: right;
+button[onclick="addTask()"]:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
 }
 
-.todo-box button:hover {
-    opacity: 0.9;
+button[onclick="resetTasks()"] {
+    background-color: #ff4b2b;
+    color: white;
 }
 
-#tasklist {
-    list-style: none;
+#Edit {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     margin-top: 20px;
+    width: 100%;
+    max-width: 400px;
 }
 
-#tasklist li {
-    background: #f4f6ff;
-    padding: 12px;
-    border-radius: 8px;
-    margin-bottom: 12px;
+#Edit h3 {
+    margin-bottom: 15px;
+    color: #444;
+}
+
+#tasksList {
+    list-style: none;
+    width: 100%;
+    max-width: 500px;
+    margin-top: 30px;
+}
+
+#tasksList li {
+    background: white;
+    margin-bottom: 15px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
     border-left: 5px solid #667eea;
 }
 
-.task {
-    font-weight: bold;
-    color: #333;
+#tasksList li:hover {
+    transform: scale(1.02);
 }
 
-.desc {
-    margin-top: 4px;
-    color: #555;
-    font-size: 14px;
+#tasksList h3 {
+    color: #2d3436;
+    margin-bottom: 5px;
 }
 
-.datetime {
-    margin-top: 6px;
-    font-size: 12px;
-    color: #777;
+#tasksList p {
+    color: #636e72;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+button[onclick^="showUpdate"] {
+    background-color: #3498db;
+    color: white;
+}
+
+button[onclick^="deleteTask"] {
+    background-color: #e74c3c;
+    color: white;
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    button {
+        width: 100%;
+        margin: 5px 0;
+    }
 }
