@@ -1,62 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css">
-  <title>Todo List</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <title>Todo List</title>
 
-  <style>
-    #Edit {
-      display: none;
-    }
-  </style>
-</head>
-<body>
+    <style>
+      #Edit {
+        display: none;
+      }
+      #para {
+        display: none;
+      }
 
-<h1>Todo List</h1>
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-Task:
-<input type="text" id="Tasks">
+        background: radial-gradient(
+            circle at top left,
+            #ffd1dc,
+            transparent 40%
+          ),
+          radial-gradient(circle at bottom right, #ffe6f0, transparent 40%),
+          #ffffff;
 
-Description:
-<input type="text" id="taskdesc">
+        font-family: "Segoe UI", sans-serif;
+      }
 
-<button onclick="addTask()">Add Task</button>
-<button onclick="resetTasks()">Clear All</button>
+      .overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        display: none;
+        justify-content: center;
+        align-items: center;
+      }
 
-<div id="Edit">
-  <h3>Update Task</h3>
-  Task:
-  <input type="text" id="UpdatedTask"><br><br>
-  Description:
-  <input type="text" id="Updatetaskdes"><br><br>
-  <button onclick="updateTask()">Update</button>
-</div>
+      .popup {
+        width: 360px;
+        background: linear-gradient(180deg, #fff0f6, #ffffff);
+        border-radius: 20px;
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        animation: pop 0.5s ease;
+      }
 
-<ul id="tasksList"></ul>
+      @keyframes pop {
+        from {
+          transform: scale(0.6);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
 
-<script>
-  let counter = 0;
-  let currentUpdateId = null;
+      .panda {
+        font-size: 70px;
+        margin-bottom: 10px;
+        animation: wave 1s infinite alternate;
+      }
 
-  function addTask() {
-    const task = document.getElementById("Tasks").value;
-    const desc = document.getElementById("taskdesc").value;
+      @keyframes wave {
+        from {
+          transform: rotate(-5deg);
+        }
+        to {
+          transform: rotate(5deg);
+        }
+      }
 
-    if (task === "" || !isNaN(task)) {
-      alert("Enter valid task");
-      return;
-    }
+      .popup h2 {
+        margin: 10px 0;
+        color: #333;
+      }
 
-    counter++;
-    const date = new Date().toLocaleString();
+      .popup p {
+        color: #666;
+        font-size: 15px;
+      }
 
-    const li = document.createElement("li");
-    // ID ko <li> par shift kar diya taaki asani se delete/update ho sake
-    li.id = `task-item-${counter}`; 
-    
-    li.innerHTML = `
+      .close-btn {
+        margin-top: 20px;
+        padding: 12px 30px;
+        border: none;
+        border-radius: 25px;
+        background: #ff6f91;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      .close-btn i {
+        margin-right: 6px;
+      }
+
+      .close-btn:hover {
+        background: #ff4f7a;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Todo List</h1>
+
+    <div class="overlay" id="overlay">
+      <div class="popup">
+        <div class="panda">🐼</div>
+        <h2>Welcome!</h2>
+        <p>Thanks for visiting my site 💖</p>
+
+        <button class="close-btn" onclick="closepopup()">
+          <i class="fa-solid fa-heart"></i> CLOSE
+        </button>
+      </div>
+    </div>
+
+    Task:
+    <input type="text" id="Tasks" />
+
+    Description:
+    <input type="text" id="taskdesc" />
+
+    <button onclick="addTask()">Add Task</button>
+    <button onclick="resetTasks()">Clear All</button>
+
+    <div id="Edit">
+      <h3>Update Task</h3>
+      Task:
+      <input type="text" id="UpdatedTask" /><br /><br />
+      Description:
+      <input type="text" id="Updatetaskdes" /><br /><br />
+      <button onclick="updateTask()">Update</button>
+    </div>
+
+    <ul id="tasksList"></ul>
+
+    <script>
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          document.getElementById("overlay").style.display = "flex";
+        }, 1000);
+      });
+
+      function closepopup() {
+        document.getElementById("overlay").style.display = "none";
+      }
+      let counter = 0;
+      let currentUpdateId = null;
+
+      function addTask() {
+        const task = document.getElementById("Tasks").value;
+        const desc = document.getElementById("taskdesc").value;
+
+        if (task === "" || !isNaN(task)) {
+          alert("Enter valid task");
+          return;
+        }
+
+        counter++;
+        const date = new Date().toLocaleString();
+
+        const li = document.createElement("li");
+        // ID ko <li> par shift kar diya taaki asani se delete/update ho sake
+        li.id = `task-item-${counter}`;
+
+        li.innerHTML = `
       <div id="taskdetails-${counter}">
         <h3 id="taskname-${counter}">${task}</h3>
         <p id="taskdescription-${counter}">${desc}</p>
@@ -67,56 +186,57 @@ Description:
       </div>
     `;
 
-    document.getElementById("tasksList").appendChild(li);
+        document.getElementById("tasksList").appendChild(li);
 
-    document.getElementById("Tasks").value = "";
-    document.getElementById("taskdesc").value = "";
-  }
+        document.getElementById("Tasks").value = "";
+        document.getElementById("taskdesc").value = "";
+      }
 
-  function showUpdate(id) {
-    const ask = confirm("Do you really want to update this task?");
-    if (!ask) return;
+      function showUpdate(id) {
+        const ask = confirm("Do you really want to update this task?");
+        if (!ask) return;
 
-    document.getElementById("Edit").style.display = "block";
+        document.getElementById("Edit").style.display = "block";
 
-    document.getElementById("UpdatedTask").value =
-      document.getElementById(`taskname-${id}`).innerText;
+        document.getElementById("UpdatedTask").value = document.getElementById(
+          `taskname-${id}`
+        ).innerText;
 
-    document.getElementById("Updatetaskdes").value =
-      document.getElementById(`taskdescription-${id}`).innerText;
+        document.getElementById("Updatetaskdes").value =
+          document.getElementById(`taskdescription-${id}`).innerText;
 
-    currentUpdateId = id;
-  }
+        currentUpdateId = id;
+      }
 
-  function updateTask() {
-    document.getElementById(`taskname-${currentUpdateId}`).innerText =
-      document.getElementById("UpdatedTask").value;
+      function updateTask() {
+        document.getElementById(`taskname-${currentUpdateId}`).innerText =
+          document.getElementById("UpdatedTask").value;
 
-    document.getElementById(`taskdescription-${currentUpdateId}`).innerText =
-      document.getElementById("Updatetaskdes").value;
+        document.getElementById(
+          `taskdescription-${currentUpdateId}`
+        ).innerText = document.getElementById("Updatetaskdes").value;
 
-    alert("TASK UPDATED SUCCESSFULLY!");
+        alert("TASK UPDATED SUCCESSFULLY!");
 
-    document.getElementById("Edit").style.display = "none";
-    currentUpdateId = null;
-  }
+        document.getElementById("Edit").style.display = "none";
+        currentUpdateId = null;
+      }
 
-  function deleteTask(id) {
-    const ask = confirm("Do you really want to delete this task?");
-    if (ask) {
-      const elementToRemove = document.getElementById(`task-item-${id}`);
-      elementToRemove.remove();
-      alert("TASK DELETED");
-    }
-  }
+      function deleteTask(id) {
+        const ask = confirm("Do you really want to delete this task?");
+        if (ask) {
+          const elementToRemove = document.getElementById(`task-item-${id}`);
+          elementToRemove.remove();
+          alert("TASK DELETED");
+        }
+      }
 
-  function resetTasks() {
-    document.getElementById("tasksList").innerHTML = "";
-    document.getElementById("Edit").style.display = "none";
-    counter = 0;
-    currentUpdateId = null;
-  }
-</script>
-
-</body>
+      function resetTasks() {
+        document.getElementById("tasksList").innerHTML = "";
+        document.getElementById("Edit").style.display = "none";
+        counter = 0;
+        currentUpdateId = null;
+      }
+    </script>
+  </body>
 </html>
