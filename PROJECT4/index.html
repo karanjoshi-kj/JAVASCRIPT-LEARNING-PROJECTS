@@ -26,9 +26,11 @@
       function generateOTP() {
         generatedOTP = "";
 
+        let chars = "ABCDEFGHIJKLMNOPQERSTUVWXYZabcdefghijklmnopqrstvwxyz0123456789";
+        
         for (let i = 0; i < 6; i++) {
-          let digit = Math.floor(Math.random() * 10);
-          generatedOTP = generatedOTP + digit;
+          let digit = Math.floor(Math.random() * chars.length);
+          generatedOTP = generatedOTP + chars[digit];
         }
 
         document.getElementById("generatedOtp").value = generatedOTP;
