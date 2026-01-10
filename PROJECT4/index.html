@@ -1,11 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OTP GENERATOR</title>
-</head>
-<body>
-    
-</body>
+<html>
+  <head>
+    <title>OTP Generator & Verifier</title>
+  </head>
+  <style>
+    #verification {
+      display: none;
+    }
+  </style>
+  <body>
+    <button onclick="generateOTP()">Generate OTP</button>
+    <br /><br />
+
+    <input type="text" id="generatedOtp" placeholder="Generated OTP" readonly />
+    <br /><br />
+
+    <div id="verification">
+      <input type="text" id="userOtp" placeholder="Enter Generated OTP" />
+      <button onclick="verifyOTP()">Verify OTP</button>
+    </div>
+
+    <script>
+      let generatedOTP = "";
+
+      function generateOTP() {
+        generatedOTP = "";
+
+        for (let i = 0; i < 6; i++) {
+          let digit = Math.floor(Math.random() * 10);
+          generatedOTP = generatedOTP + digit;
+        }
+
+        document.getElementById("generatedOtp").value = generatedOTP;
+        alert("OTP Generated");
+        
+        document.getElementById("verification").style.display = "block";
+    }
+
+      function verifyOTP() {
+        let enteredOTP = document.getElementById("userOtp").value;
+   
+        if (enteredOTP === generatedOTP && generatedOTP !== "") {
+          alert("OTP Verified");
+        } else {
+          alert("OTP Not Verified");
+        }
+      }
+    </script>
+  </body>
 </html>
