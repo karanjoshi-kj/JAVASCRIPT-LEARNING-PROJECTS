@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>College Question Papers 📚</title>
+
   <style>
     * {
       margin: 0;
@@ -12,27 +13,21 @@
       font-family: Arial, Helvetica, sans-serif;
     }
 
-   body {
-  min-height: 100vh;
-  background: linear-gradient(135deg,
-    #f7e9ec,
-    #ebdade,
-    #f7dde4
-  );
-  color: #2c2c2c;
-}
-
-    .card {
-  background: rgba(255, 255, 255, 0.85);
-  color: #333;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-}
-
-
+    body {
+      min-height: 100vh;
+      background:
+        linear-gradient(
+          rgba(0, 0, 0, 0.4),
+          rgba(0, 0, 0, 0.55)
+        ),
+        url("https://res.cloudinary.com/dafwtuvrd/image/upload/f_auto,q_auto,c_fill,g_south/v1770042459/280fc2a7-bf1d-467e-84c1-6dad360400b9_slsaey.jpg")
+        no-repeat center 35% / cover;
+      color: #fff;
+    }
 
     header {
       text-align: center;
-      padding: 20px;
+      padding: 28px 15px;
     }
 
     header h1 {
@@ -55,18 +50,18 @@
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(6px);
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(7px);
       border-radius: 15px;
       padding: 25px;
       text-align: center;
       cursor: pointer;
-      transition: transform 0.3s, background 0.3s;
+      transition: transform 0.3s ease, background 0.3s ease;
     }
 
     .card:hover {
-      transform: translateY(-8px) scale(1.02);
-      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-8px) scale(1.03);
+      background: rgba(255, 255, 255, 0.3);
     }
 
     .emoji {
@@ -75,28 +70,45 @@
     }
 
     .card h2 {
-      font-size: 1.2rem;
-      margin-bottom: 5px;
+      font-size: 1.3rem;
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      opacity: 0.9;
     }
 
     footer {
       text-align: center;
-      padding: 15px;
+      padding: 16px;
       font-size: 0.9rem;
-      opacity: 0.8;
+      opacity: 0.85;
     }
 
-    @media (max-width: 500px) {
+    /* 📱 MOBILE OPTIMIZATION */
+    @media (max-width: 768px) {
+      body {
+        background:
+          linear-gradient(
+            rgba(0, 0, 0, 0.55),
+            rgba(0, 0, 0, 0.7)
+          ),
+          url("https://res.cloudinary.com/dafwtuvrd/image/upload/f_auto,q_auto,c_fill,g_south/v1770042459/280fc2a7-bf1d-467e-84c1-6dad360400b9_slsaey.jpg")
+          no-repeat center bottom / cover;
+      }
+
       header h1 {
         font-size: 1.6rem;
       }
     }
   </style>
 </head>
+
 <body>
 
   <header>
-    <h1>📂 College Question Papers Repo</h1>
+    <h1>College Question Papers</h1>
     <p>BCA • MCA • B.Tech (CSE / ECE)</p>
   </header>
 
@@ -104,7 +116,7 @@
     <div class="card" onclick="openFolder('BCA')">
       <div class="emoji">🎓</div>
       <h2>BCA</h2>
-      <p>All Sem Question Papers</p>
+      <p>All Semester Question Papers</p>
     </div>
 
     <div class="card" onclick="openFolder('MCA')">
@@ -127,23 +139,9 @@
   </main>
 
   <footer>
-    Made with ❤️ for College Students | By Karan Joshi . 
+    Made with ❤️ for College Students | By Karan Joshi
   </footer>
-
-  <!-- <script>
-    function openFolder(folderName) {
-      /*
-        Repo structure example:
-        /BCA/
-        /MCA/
-        /BTECH_CSE/
-        /BTECH_ECE/
-
-        GitHub pages par ye folders open ho jayenge
-      */
-      window.location.href = `./${folderName}/`;
-    }
-  </script> -->
+     
 
 </body>
 </html>
