@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>College Question Papers 📚</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+   body {
+  min-height: 100vh;
+  background: linear-gradient(135deg,
+    #f7e9ec,
+    #ebdade,
+    #f7dde4
+  );
+  color: #2c2c2c;
+}
+
+    .card {
+  background: rgba(255, 255, 255, 0.85);
+  color: #333;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+
+
+    header {
+      text-align: center;
+      padding: 20px;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(6px);
+      border-radius: 15px;
+      padding: 25px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.02);
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .emoji {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .card h2 {
+      font-size: 1.2rem;
+      margin-bottom: 5px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    @media (max-width: 500px) {
+      header h1 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>📂 College Question Papers Repo</h1>
+    <p>BCA • MCA • B.Tech (CSE / ECE)</p>
+  </header>
+
+  <main class="container">
+    <div class="card" onclick="openFolder('BCA')">
+      <div class="emoji">🎓</div>
+      <h2>BCA</h2>
+      <p>All Sem Question Papers</p>
+    </div>
+
+    <div class="card" onclick="openFolder('MCA')">
+      <div class="emoji">💻</div>
+      <h2>MCA</h2>
+      <p>Previous Year Papers</p>
+    </div>
+
+    <div class="card" onclick="openFolder('BTECH_CSE')">
+      <div class="emoji">🧠</div>
+      <h2>B.Tech CSE</h2>
+      <p>CSE Branch Papers</p>
+    </div>
+
+    <div class="card" onclick="openFolder('BTECH_ECE')">
+      <div class="emoji">📡</div>
+      <h2>B.Tech ECE</h2>
+      <p>ECE Branch Papers</p>
+    </div>
+  </main>
+
+  <footer>
+    Made with ❤️ for College Students | By Karan Joshi . 
+  </footer>
+
+  <!-- <script>
+    function openFolder(folderName) {
+      /*
+        Repo structure example:
+        /BCA/
+        /MCA/
+        /BTECH_CSE/
+        /BTECH_ECE/
+
+        GitHub pages par ye folders open ho jayenge
+      */
+      window.location.href = `./${folderName}/`;
+    }
+  </script> -->
+
+</body>
+</html>
