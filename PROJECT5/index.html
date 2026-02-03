@@ -4,9 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>College Question Papers 📚</title>
-
-  <!-- CSS FILE LINK -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
@@ -17,40 +15,37 @@
   </header>
 
   <main class="container">
-    <div class="card" onclick="openFolder('BCA')">
+
+    <div class="card" onclick="goTo('BCA')">
       <div class="emoji">🎓</div>
       <h2>BCA</h2>
-      <p>All Semester Question Papers</p>
+      <p>All Semester Papers</p>
     </div>
 
-    <div class="card" onclick="openFolder('MCA')">
+    <div class="card" onclick="goTo('MCA')">
       <div class="emoji">💻</div>
       <h2>MCA</h2>
       <p>Previous Year Papers</p>
     </div>
 
-    <div class="card" onclick="openFolder('BTECH_CSE')">
+    <div class="card" onclick="goTo('BTECH_CSE')">
       <div class="emoji">🧠</div>
       <h2>B.Tech CSE</h2>
       <p>CSE Branch Papers</p>
     </div>
 
-    <div class="card" onclick="openFolder('BTECH_ECE')">
+    <div class="card" onclick="goTo('BTECH_ECE')">
       <div class="emoji">📡</div>
       <h2>B.Tech ECE</h2>
       <p>ECE Branch Papers</p>
     </div>
+
   </main>
 
   <footer>
     Made with ❤️ for College Students | By Karan Joshi
   </footer>
 
-  <script>
-    function openFolder(folderName) {
-      window.location.href = `./${folderName}/`;
-    }
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
