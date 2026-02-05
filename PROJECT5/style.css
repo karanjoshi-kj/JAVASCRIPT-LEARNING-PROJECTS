@@ -80,6 +80,28 @@ footer {
 .hidden {
   display: none;
 }
+.open-paper-btn {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 12px 26px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+
+  /* 🎨 Different gradient (blue-green) */
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+
+  border-radius: 30px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  transition: all 0.3s ease;
+}
+
+.open-paper-btn:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45);
+  background: linear-gradient(135deg, #2f80ed, #56ccf2);
+}
+
 /* 📱 MOBILE OPTIMIZATION */
 @media (max-width: 768px) {
   body {
@@ -96,3 +118,26 @@ footer {
     font-size: 1.6rem;
   }
 }
+
+.back-btn {
+  display: inline-block;
+  margin: 30px auto;
+  padding: 12px 26px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+
+  /* 🎨 Colorful gradient */
+  background: linear-gradient(135deg, #ff6a88, #ff99ac);
+
+  border-radius: 30px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45);
+  background: linear-gradient(135deg, #ff4d6d, #ff8fa3);
+}
+
